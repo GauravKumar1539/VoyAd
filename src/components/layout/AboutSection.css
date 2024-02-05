@@ -1,0 +1,25 @@
+/* AboutSection.css */
+.flex {
+    display: flex;
+    align-items: center;
+  }
+  
+  .flex > div {
+    max-width: 50%; /* Adjust the maximum width as needed */
+  }
+  
+  .flex > div:first-child {
+    order: -1; /* Move the first child (image) to the left */
+  }
+  
+  .flex img {
+    width: 100%; /* Make the image fill its container */
+    max-width: 400px; /* Adjust the maximum width as needed */
+    height: auto; /* Maintain aspect ratio */
+  }
+  
+  /* Additional styling for text content if needed */
+  .flex > div:not(:first-child) {
+    margin-left: 20px; /* Add space between image and text */
+  }
+  
