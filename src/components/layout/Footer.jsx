@@ -14,17 +14,13 @@ export default function Footer(){
       <ul class='flex flex-col gap-6 '>
         <li>Marketing</li>
         <li>Analytics</li>
-        <li>Commerce</li>
-        <li>Insights</li>
       </ul>
     </div>
     <div class='flex flex-col gap-6'>
       <label class='text-gray-400'>SUPPORT</label>
       <ul class='flex flex-col gap-6'>
         <li>Pricing</li>
-        <li>Documentation</li>
         <li>Guides</li>
-        <li>API Status</li>
       </ul>
     </div>
     <div class='flex flex-col gap-6'>
@@ -40,9 +36,7 @@ export default function Footer(){
       <label className='text-gray-400'>SUPPORT</label>
       <ul className='flex flex-col gap-6 '>
         <li>Pricing</li>
-        <li>Documentation</li>
         <li>Guides</li>
-        <li>API Status</li>
       </ul>
     </div>
   </div>
