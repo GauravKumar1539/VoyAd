@@ -10,6 +10,7 @@ const UserInfoSchema = new Schema(
     accountNo: { type: String },
     ifscCode : {type:String},
     admin: { type: Boolean, default: 0},
+    vehicle: {type:String},
     userType: {type: Number, default: 2, required:true},
   },
   { timestamps: true }

@@ -37,6 +37,7 @@ export default function UserForm({ user, onSave }) {
             accountNo,
             ifscCode,
             city,
+            vehicle,
             userType,
             postalCode,
           })

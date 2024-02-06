@@ -12,19 +12,15 @@ export default function Loginbutton(){
             {userType !== 2 && userType !== 1 && (
             <>
             <div className="inline-flex gap-8">
-            <Link href={'/login'} className="flex justify-center gap-2 uppercase bg-primary text-white font-semibold rounded-full px-5 py-2 text-sm items-center ">
-                <div className="flex flex-col items-start">
-                  <p>I am an</p>
-                  <p>advertiser</p>
-                </div>
+            <Link href={'/login'} className="flex justify-center gap-4 uppercase bg-primary text-white font-semibold rounded-full px-5 py-2 text-sm items-center ">
+                I am an advertiser
                 <Right />
               </Link>
-              <Link href={'/login'} className="flex gap-2 items-center text-gray-700 font-semibold">
+              <Link href={'/login'} className="text-[14px] flex justify-center gap-2 uppercase bg-gray-500 text-white font-semibold rounded-full px-5 py-2 text-sm items-center">
                 I am a Driver
                 <Right />
               </Link>
             </div>
-              
             </>
           )} 
           {userType === 1 && (
@@ -41,4 +37,4 @@ export default function Loginbutton(){
           )}
        </div>
     );
-} 
+}

@@ -44,9 +44,9 @@ export default function Header() {
     userName = userName.split(' ')[0];
   }
   return (
-    <header className ="max-w-7xl m-auto">
+    <header className ="max-w-8xl m-auto text-xl px-6 py-1" >
       <div className="flex items-center md:hidden justify-between">
-        <Link className="text-primary font-semibold text-2xl" href={'/'}>
+        <Link className="text-primary font-semibold" href={'/'}>
           VoyAd
         </Link>
         <div className="flex gap-8 items-center">
@@ -78,7 +78,7 @@ export default function Header() {
       )}
       <div className="hidden md:flex items-center justify-between">
         <nav className="flex items-center gap-8 text-gray-500 font-semibold">
-          <Link className="text-primary font-semibold text-2xl" href={'/'}>
+          <Link className="text-primary font-semibold text-3xl" href={'/'}>
             VoyAd
           </Link>
           <Link href={'/'}>Home</Link>
@@ -86,7 +86,7 @@ export default function Header() {
           <Link href={'/#about'}>About</Link>
           <Link href={'/#contact'}>Contact</Link>
         </nav>
-        <nav className="flex items-center gap-4 text-gray-500 font-semibold">
+        <nav className="flex items-center gap-4 text-gray-500 font-semibold text-lg">
           <AuthLinks status={status} userName={userName} />
           <Link href={'/cart'} className="relative">
             <ShoppingCart />

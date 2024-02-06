@@ -20,7 +20,7 @@ export default function AddToCartButton({
       onClick={onClick}
       className="mt-4 bg-primary text-white rounded-full px-8 py-2"
     >
-      <span>Add to cart (from ${basePrice})</span>
+      <span> Add to Cart (Price - ₹{basePrice})</span>
     </button>
   );
 }

@@ -1,30 +1,33 @@
 'use client';
-import {CartContext, cartProductPrice} from "@/components/AppContext";
+import { CartContext, cartProductPrice } from "@/components/AppContext";
 import Trash from "@/components/icons/Trash";
 import AddressInputs from "@/components/layout/AddressInputs";
 import SectionHeaders from "@/components/layout/SectionHeaders";
 import CartProduct from "@/components/menu/CartProduct";
-import {useProfile} from "@/components/UseProfile";
+import { useProfile } from "@/components/UseProfile";
 import Image from "next/image";
-import {useContext, useEffect, useState} from "react";
+import { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 export default function CartPage() {
-  const {cartProducts,removeCartProduct} = useContext(CartContext);
+  const { cartProducts, removeCartProduct } = useContext(CartContext);
   const [address, setAddress] = useState({});
-  const {data:profileData} = useProfile();
+  const { data: profileData } = useProfile();
+  const [users, setUsers] = useState([]);
+  const [postalCode, setPostalCode] = useState('');
+  const [location, setLocation] = useState('');
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      if (window.location.href.includes('canceled=1')) {
-        toast.error('Payment failed 😔');
-      }
-    }
+    fetch('/api/userinfo').then(response => {
+      response.json().then(users => {
+        setUsers(users);
+      });
+    });
   }, []);
 
   useEffect(() => {
     if (profileData?.city) {
-      const {phone, streetAddress, city, postalCode, country} = profileData;
+      const { phone, streetAddress, city, postalCode, country } = profileData;
       const addressFromProfile = {
         phone,
         streetAddress,
@@ -40,17 +43,18 @@ export default function CartPage() {
   for (const p of cartProducts) {
     subtotal += cartProductPrice(p);
   }
+
   function handleAddressChange(propName, value) {
-    setAddress(prevAddress => ({...prevAddress, [propName]:value}));
+    setAddress(prevAddress => ({ ...prevAddress, [propName]: value }));
   }
+
   async function proceedToCheckout(ev) {
     ev.preventDefault();
-    // address and shopping cart products
 
     const promise = new Promise((resolve, reject) => {
       fetch('/api/checkout', {
         method: 'POST',
-        headers: {'Content-Type':'application/json'},
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           address,
           cartProducts,
@@ -88,14 +92,11 @@ export default function CartPage() {
       </div>
       <div className="mt-8 grid gap-8 grid-cols-2">
         <div>
-          {cartProducts?.length === 0 && (
-            <div>No products in your shopping cart</div>
-          )}
           {cartProducts?.length > 0 && cartProducts.map((product, index) => (
             <CartProduct
               key={index}
               product={product}
-              onRemove={removeCartProduct}
+              onRemove={() => removeCartProduct(index)}
             />
           ))}
           <div className="py-2 pr-16 flex justify-end items-center">
@@ -112,13 +113,21 @@ export default function CartPage() {
           </div>
         </div>
         <div className="bg-gray-100 p-4 rounded-lg">
-          <h2>Checkout</h2>
+          <h2 className="w-1/5 m-auto text-primary text-xl font-bold mb-8">Checkout</h2>
           <form onSubmit={proceedToCheckout}>
-            <AddressInputs
-              addressProps={address}
-              setAddressProp={handleAddressChange}
-            />
-            <button type="submit">Pay ${subtotal+5}</button>
+            <select
+              value={location}
+              onChange={(ev) => setLocation(ev.target.value)}
+            >
+              <option value="">Select a postal code</option>
+              {users?.length > 0 &&
+                users.map((user) => (
+                  <option key={user.postalCode} value={user.postalCode}>
+                    {user.postalCode}
+                  </option>
+                ))}
+            </select>
+            <button type="submit">Pay ${subtotal + 5}</button>
           </form>
         </div>
       </div>

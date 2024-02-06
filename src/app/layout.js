@@ -4,6 +4,7 @@ import Header from "../components/layout/Header";
 import Footer from "../components/layout/Footer";
 import { AppProvider } from "../components/AppContext";
 import { Toaster } from "react-hot-toast";
+import PopupButton from '../components/layout/PopUp';
 const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
 
 export const metadata = {
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
           <AppProvider>
             <Toaster />
             <Header />
+            <PopupButton/>
             {children}
             <Footer />
           </AppProvider>

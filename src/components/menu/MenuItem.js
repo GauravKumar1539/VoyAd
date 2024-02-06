@@ -7,8 +7,7 @@ import FlyingButton from "react-flying-item";
 import toast from "react-hot-toast";
 
 export default function MenuItem(menuItem) {
-  const { image, name, description, basePrice, sizes, extraIngredientPrices } =
-    menuItem;
+  const { image, name, description, basePrice, sizes, extraIngredientPrices } = menuItem;
   const [selectedSize, setSelectedSize] = useState(sizes?.[0] || null);
   const [selectedExtras, setSelectedExtras] = useState([]);
   const [showPopup, setShowPopup] = useState(false);
